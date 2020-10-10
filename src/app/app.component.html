@@ -1,0 +1,9 @@
+
+<h1>Component app</h1>
+<ul>
+  <li
+    *ngFor="let todo of todos$ | async"
+  >
+    {{todo.text}}
+  </li>
+</ul>
