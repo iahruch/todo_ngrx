@@ -31,14 +31,16 @@ const todosReducer = createReducer(
   })),
 
   on( todoActions.completeTodo, (state, action: Action) => {
-    return {
-      listTodos:  [...state.listTodos].map( (todo: Todo) => {
-          if(todo.id === action['id']) {
-            return todo.completed = !todo.completed;
+    const newListTodo = JSON.parse(JSON.stringify(state.listTodos));
+
+     return {
+        listTodos: newListTodo.map( todo => {
+          if(todo.id == action['id']) {
+              todo.completed = !todo.completed
           }
           return todo;
         })
-     }
+      }
     }
   ),
 

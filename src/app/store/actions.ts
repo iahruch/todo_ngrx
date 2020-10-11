@@ -16,10 +16,10 @@ export const addTodo = createAction(
 
 export const completeTodo = createAction(
   TodoActions.CompleteTodo,
-  props<{id: number|string } >()
+  props<{id: string}>()
 );
 
 export const removeTodo = createAction(
   TodoActions.RemoveTodo,
-  props<{id: number|string}>()
+  props<{id: string}>()
 )
