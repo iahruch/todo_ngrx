@@ -3,15 +3,26 @@ import { Todo } from './models';
 
 
 export enum TodoActions {
-  AddTodos =     '[Todos] Add todo',
-  CompleteTodo = '[Todos] Complete todo',
-  RemoveTodo =   '[Todos] Remove todo',
+  AddTodoStart    =  '[Todo] Start add todo',
+  AddTodoSuccess  =  '[Todo] Successful add todo',
+  AddTodoError    =  '[Todo] Error Add todo',
+
+  CompleteTodo = '[Todo] Complete todo',
+  RemoveTodo =   '[Todo] Remove todo',
 };
 
+export const addTodoStart = createAction(
+  TodoActions.AddTodoStart
+);
 
-export const addTodo = createAction(
-  TodoActions.AddTodos,
+export const addTodoSuccess = createAction(
+  TodoActions.AddTodoSuccess,
   props<{todo: Todo}>()
+);
+
+export const addTodoError = createAction(
+  TodoActions.AddTodoSuccess,
+  props<{error: any}>()
 );
 
 export const completeTodo = createAction(

@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {StoreModule} from "@ngrx/store";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {EffectsModule} from "@ngrx/effects";
+import {TodoEffects} from "./store/effects";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {StoreModule} from "@ngrx/store";
-import { reducer } from "./store/reducer";
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {FormsModule} from "@angular/forms";
+import {reducer } from "./store/reducer";
 
 @NgModule({
   declarations: [
@@ -16,6 +20,8 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
+    EffectsModule.forRoot([TodoEffects]),
     StoreModule.forRoot({todos: reducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
