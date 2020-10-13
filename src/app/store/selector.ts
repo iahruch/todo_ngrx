@@ -1,10 +1,10 @@
 import {createSelector, State} from "@ngrx/store";
-import {IState} from "./reducer";
-import {Todo} from "./models";
+import {ISTATE} from "./reducer";
+import {USER} from "./models";
 
-const selectTodos = (state: State<IState>) => state['todos'];
+const selectUsers = (state: State<ISTATE>) => state['users'];
 
-export const getTodos = createSelector(
-  selectTodos,
-  (state: IState): Array<Todo> => state.listTodos
+export const getUsers = createSelector(
+  selectUsers,
+  (state: ISTATE): Array<USER> => state.list
 );

@@ -1,56 +1,40 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { Todo } from "./models";
-import * as todoActions from './actions'
+import { User } from "./models";
+import * as userActions from './actions'
 
 
 export interface IState {
-  listTodos : Array<Todo>;
+  list : Array<User>;
+  error: string;
 }
 
 export const initialState: IState = {
-  listTodos: [
-    {
-      id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
-      text: 'First task',
-      completed: false
-    },
-    {
-      id: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
-      text: 'Second test task',
-      completed: false
-    }
-  ]
-}
+  list: [],
+  error: ''
+};
 
 
-// @ts-ignore
-const todosReducer = createReducer(
+const usersReducer = createReducer(
   initialState,
-  on( todoActions.addTodo, (state, action) => ({
-    listTodos: [...state.listTodos, { ...action.todo } ]
+  on( userActions.fetchUsersStart, (state, action) => ({
+    ...state,
+    error: ''
   })),
 
-  on( todoActions.completeTodo, (state, action: Action) => {
-    const newListTodo = JSON.parse(JSON.stringify(state.listTodos));
+  on( userActions.fetchUsersSuccess, (state, action) => ({
+    ...state,
+    list: [...action.users],
+    error: ''
+  })),
 
-     return {
-        listTodos: newListTodo.map( todo => {
-          if(todo.id == action['id']) {
-              todo.completed = !todo.completed
-          }
-          return todo;
-        })
-      }
-    }
-  ),
+  on( userActions.fetchUsersError, (state, action) => ({
+    ...state,
+    error: action.error
+  })),
 
-  on( todoActions.removeTodo, (state, action: Action) => ({
-    listTodos: [...state.listTodos].filter( (todo: Todo) => todo.id !== action['id'] )
-  }))
-
-)
+);
 
 export const reducer = (state: IState | undefined, action: Action) => {
-  return todosReducer(state, action);
+  return usersReducer(state, action);
 }
 

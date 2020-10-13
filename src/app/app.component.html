@@ -9,25 +9,22 @@
     />
   </div>
 
+  //
+  //   "id": 7,
+  //   "email": "michael.lawson@reqres.in",
+  //   "first_name": "Michael",
+  //   "last_name": "Lawson",
+  //   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
+  //
+
   <ul>
     <li
-      *ngFor="let todo of todos$ | async"
+      *ngFor="let user of users$ | async"
       class="item-task"
     >
-      <input
-        type="checkbox"
-        (change)="completeTask(todo.id)"
-        [checked]="todo.completed"
-        class="item-checkbox"
-      />
-      <p [ngClass]="{'completeTask': todo.completed}">
-        {{todo.text}}
-      </p>
+      <p> {{user.first_name + user.last_name}} </p>
+      <p> {{user.email}}</p>
 
-      <i
-        class="large material-icons icon-task"
-        (click)="removeTask(todo.id)"
-      >clear</i>
     </li>
   </ul>
 </section>

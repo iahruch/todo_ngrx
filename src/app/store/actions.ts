@@ -1,36 +1,26 @@
 import {createAction, props} from "@ngrx/store";
-import { Todo } from './models';
+import { User} from './models';
 
 
-export enum TodoActions {
-  AddTodoStart    =  '[Todo] Start add todo',
-  AddTodoSuccess  =  '[Todo] Successful add todo',
-  AddTodoError    =  '[Todo] Error Add todo',
-
-  CompleteTodo = '[Todo] Complete todo',
-  RemoveTodo =   '[Todo] Remove todo',
+export enum UserActions {
+  FetchUsersStart    =  '[Users] Start fetch user list',
+  FetchUsersSuccess  =  '[Users] Successful fetch user list',
+  FetchUsersError    =  '[Users] Error fetch user list',
 };
 
-export const addTodoStart = createAction(
-  TodoActions.AddTodoStart
+
+// get all list todos
+export const fetchUsersStart = createAction(
+  UserActions.FetchUsersStart
 );
 
-export const addTodoSuccess = createAction(
-  TodoActions.AddTodoSuccess,
-  props<{todo: Todo}>()
+export const fetchUsersSuccess = createAction(
+  UserActions.FetchUsersSuccess,
+  props<{users: User[]}>()
 );
 
-export const addTodoError = createAction(
-  TodoActions.AddTodoSuccess,
-  props<{error: any}>()
+export const fetchUsersError = createAction(
+  UserActions.FetchUsersError,
+  props<{error: string}>()
 );
 
-export const completeTodo = createAction(
-  TodoActions.CompleteTodo,
-  props<{id: string}>()
-);
-
-export const removeTodo = createAction(
-  TodoActions.RemoveTodo,
-  props<{id: string}>()
-)

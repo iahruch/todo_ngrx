@@ -22,7 +22,7 @@ import {reducer } from "./store/reducer";
     FormsModule,
     HttpClientModule,
     EffectsModule.forRoot([TodoEffects]),
-    StoreModule.forRoot({todos: reducer}),
+    StoreModule.forRoot({users: reducer}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
