@@ -11,45 +11,26 @@ import * as uuid from 'uuid';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  text = '';
-  users$ = this.store.pipe(select(userSelectors.getUsers));
 
+  users$ = this.store.pipe(select(userSelectors.getUsers));
+  error$ = this.store.pipe(select(userSelectors.getError));
   constructor(
     private store: Store,
   ) {
     this.store.dispatch(userActions.fetchUsersStart());
   }
 
-
-  addTask() {
-      const newTask = {
-        id: uuid.v4(),
-        email: "michael.lawson@reqres.in",
-        first_name: "Michael",
-        last_name: "Lawson",
-        avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
-      };
-
-     //this.store.dispatch( todosActions.addTodo({todo: newTask} ))
-     this.text = '';
+  addUser() {
+     const newUser = {
+       "name": "morpheus",
+       "job": "leader"
+     }
+     this.store.dispatch(userActions.addUserStart({user: newUser}));
   }
 
-  completeTask(id: string): void {
-
+  removeUser(id: number | string) {
+  this.store.dispatch(userActions.removeUserStart({id}))
   }
-
-  removeTask(id: string): void {
-
-  }
-
 }
 
 
-
-// {
-//   "id": 7,
-//   "email": "michael.lawson@reqres.in",
-//   "first_name": "Michael",
-//   "last_name": "Lawson",
-//   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
-// },

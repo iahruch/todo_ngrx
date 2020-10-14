@@ -1,31 +1,31 @@
 <section [class.container]="true">
   <h1>Component app</h1>
-  <div class="form-control">
-    <label>Enter task</label>
-    <input
-      type="text"
-      [(ngModel)]="text"
-      (keyup.enter)="addTask()"
-    />
-  </div>
 
-  //
-  //   "id": 7,
-  //   "email": "michael.lawson@reqres.in",
-  //   "first_name": "Michael",
-  //   "last_name": "Lawson",
-  //   "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/follettkyle/128.jpg"
-  //
+  <button
+    class="btn"
+    (click)="addUser()"
+  >
+    ADD</button>
 
   <ul>
     <li
       *ngFor="let user of users$ | async"
       class="item-task"
     >
-      <p> {{user.first_name + user.last_name}} </p>
-      <p> {{user.email}}</p>
-
+      <p [ngStyle]="{'color': user.color}"> {{user.name}}
+        <span *ngIf="user.year">({{user.year}})</span>
+      </p>
+      <i
+        (click)="removeUser(user.id)"
+        class="material-icons icon-clear"
+      >clear</i>
     </li>
   </ul>
+
+  <div
+    *ngIf="error$ | async as err"
+  >
+    <p class="text-warning">ERROR: {{err.message}}</p>
+  </div>
 </section>
 

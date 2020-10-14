@@ -33,12 +33,15 @@ ul {
   position: relative;
   margin-bottom: 15px;
 }
-.item-checkbox {
-  margin-right: 10px;
-}
-.icon-task{
+
+.icon-clear{
   margin-left: auto;
   cursor: pointer;
+  color: #ababab;
+  transition: color ease 0.3s;
+  &:hover {
+    color: #111;
+  }
 }
 
 .completeTask {
